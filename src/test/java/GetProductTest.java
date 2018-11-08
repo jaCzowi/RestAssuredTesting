@@ -1,3 +1,4 @@
+import config.HttpResources;
 import config.TestConfiguration;
 import io.restassured.http.ContentType;
 import org.testng.annotations.DataProvider;
@@ -16,7 +17,7 @@ public class GetProductTest extends TestConfiguration {
         given()
                 .header(headerToken, tokenValue)
                 .when()
-                .get(getEndpointWithProductResource())
+                .get(getEndpointWithResource(HttpResources.PRODUCTS))
                 .then()
                 .assertThat()
                 .statusCode(200)
@@ -28,7 +29,7 @@ public class GetProductTest extends TestConfiguration {
     public void getProductsById(int id, String prodKey, String cost) {
         given()
                 .header(headerToken, tokenValue)
-                .when().get(getEndpointWithProductResource() + "/" + id)
+                .when().get(getEndpointWithResource(HttpResources.PRODUCTS) + "/" + id)
                 .then().assertThat()
                 .statusCode(200)
                 .and()

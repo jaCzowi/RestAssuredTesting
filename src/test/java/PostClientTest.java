@@ -1,4 +1,5 @@
 import com.google.gson.JsonObject;
+import config.HttpResources;
 import config.TestConfiguration;
 import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
@@ -14,7 +15,7 @@ public class PostClientTest extends TestConfiguration {
                 .body(getPostedJson().toString())
                 .contentType(ContentType.JSON)
                 .when()
-                .post(getEndpointWithClientResource())
+                .post(getEndpointWithResource(HttpResources.CLIENTS))
                 .then()
                 .assertThat()
                 .statusCode(200)
